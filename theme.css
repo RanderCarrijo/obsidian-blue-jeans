@@ -1,0 +1,465 @@
+/* @settings
+name: Blue Jeans
+id: aetherglass-theme
+settings:
+  - id: ag-heading-surface
+    title: Superfícies & Frosted Glass
+    type: heading
+    level: 2
+    collapsed: false
+  - id: ag-glass-blur
+    title: Intensidade do Blur (Frosted Glass)
+    description: Controla o desfoque de fundo em painéis, barras laterais e modais.
+    type: variable-number-slider
+    default: 20
+    min: 0
+    max: 36
+    step: 2
+    format: px
+  - id: ag-glass-opacity
+    title: Opacidade dos Cards de Vidro
+    type: variable-number-slider
+    default: 0.64
+    min: 0.40
+    max: 1
+    step: 0.01
+  - id: ag-card-radius
+    title: Arredondamento dos Cards
+    type: variable-number-slider
+    default: 16
+    min: 8
+    max: 24
+    step: 1
+    format: px
+  - id: ag-heading-neon
+    title: Neon Minimalista & Pastas Semânticas
+    type: heading
+    level: 2
+  - id: ag-accent-color
+    title: Cor padrão do tema
+    description: Usada quando a cor de destaque do Obsidian está no padrão.
+    type: variable-themed-color
+    format: hsl-split
+    default-dark: '#22D3EE'
+    default-light: '#0891B2'
+  - id: ag-folder-tint-strength
+    title: Cores das pastas
+    description: Destaca as pastas bases, projects, raw e synthesis.
+    type: variable-select
+    default: '100%'
+    options:
+      - label: Coloridas
+        value: '100%'
+      - label: Neutras
+        value: '0%'
+*/
+
+/* ==========================================================================
+   Blue Jeans 1.0.6 — Rander Carrijo
+   Preset padrão: Cyan Lumina (Dark)
+   Obsidian 1.15.1+
+   ========================================================================== */
+
+body {
+  --font-interface-theme: "Plus Jakarta Sans", -apple-system, blinkmacsystemfont, sans-serif;
+  --font-text-theme: "Plus Jakarta Sans", -apple-system, blinkmacsystemfont, sans-serif;
+  --font-monospace-theme: "JetBrains Mono", ui-monospace, monospace;
+  --ag-glass-blur: 20px;
+  --ag-glass-opacity: 0.64;
+  --ag-folder-tint-strength: 100%;
+  --ag-card-radius: 16px;
+  --ag-control-radius: 6px;
+  --button-radius: var(--ag-control-radius);
+  --clickable-icon-radius: var(--ag-control-radius);
+  --input-radius: var(--ag-control-radius);
+  --ag-glow-strength: 0.16;
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: var(--ag-card-radius);
+  --anim-duration-fast: 140ms;
+  --anim-duration-moderate: 220ms;
+  --anim-motion-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-dark {
+  --accent-h: var(--ag-accent-color-h, 187.94);
+  --accent-s: var(--ag-accent-color-s, 85.71%);
+  --accent-l: var(--ag-accent-color-l, 53.33%);
+  --ag-frame-background: #0b1422;
+  --ag-panel-background: #111d2f;
+  --background-primary: rgb(16 24 43 / var(--ag-glass-opacity));
+  --background-primary-alt: rgb(11 17 31 / 72%);
+  --background-secondary: rgb(13 20 36 / 68%);
+  --background-secondary-alt: rgb(8 12 22 / 84%);
+  --background-modifier-border: rgb(255 255 255 / 10%);
+  --background-modifier-border-hover: color-mix(in srgb, var(--color-accent) 42%, transparent);
+  --background-modifier-hover: rgb(255 255 255 / 6%);
+  --text-normal: #eef4ff;
+  --text-muted: #a5b4cc;
+  --text-faint: #70829e;
+  --shadow-s: 0 12px 32px -14px rgb(2 6 18 / 65%);
+  --shadow-l: 0 24px 60px -18px rgb(2 6 18 / 82%);
+}
+
+.theme-light {
+  --accent-h: var(--ag-accent-color-h, 191.65);
+  --accent-s: var(--ag-accent-color-s, 91.40%);
+  --accent-l: var(--ag-accent-color-l, 36.47%);
+  --ag-frame-background: #dce8f3;
+  --ag-panel-background: #f4f8ff;
+  --background-primary: rgb(255 255 255 / var(--ag-glass-opacity));
+  --background-primary-alt: rgb(244 248 255 / 78%);
+  --background-secondary: rgb(248 251 255 / 72%);
+  --background-secondary-alt: rgb(232 239 248 / 86%);
+  --background-modifier-border: rgb(15 23 42 / 10%);
+  --background-modifier-border-hover: color-mix(in srgb, var(--color-accent) 38%, transparent);
+  --background-modifier-hover: rgb(15 23 42 / 5%);
+  --text-normal: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #64748b;
+  --shadow-s: 0 10px 28px -12px rgb(15 23 42 / 12%);
+  --shadow-l: 0 22px 54px -18px rgb(15 23 42 / 20%);
+}
+
+/* Shared chrome and control colors */
+:is(.theme-dark, .theme-light) {
+  --ag-panel-border: color-mix(in srgb, var(--text-muted) 27%, var(--ag-frame-background));
+  --ag-control-border: color-mix(in srgb, var(--text-muted) 74%, var(--ag-panel-background));
+  --ag-control-background: color-mix(in srgb, var(--text-muted) 12%, var(--ag-panel-background));
+  --ag-control-hover: color-mix(in srgb, var(--color-accent) 14%, var(--ag-control-background));
+  --ag-control-active: color-mix(in srgb, var(--color-accent) 25%, var(--ag-panel-background));
+  --ag-control-light: rgb(248 252 255 / 15%);
+  --ag-control-shadow: inset 0 1px 0 var(--ag-control-light), 0 1px 1px var(--ag-frame-background);
+  --ag-control-pressed: inset 0 1px 2px color-mix(in srgb, var(--ag-frame-background) 70%, transparent);
+  --interactive-normal: var(--ag-control-background);
+  --interactive-hover: var(--ag-control-hover);
+  --input-shadow: var(--ag-control-shadow);
+  --input-shadow-hover: var(--ag-control-shadow);
+  --dropdown-background: var(--ag-control-background);
+  --background-modifier-border-focus: var(--link-color);
+  --ribbon-background: var(--ag-frame-background);
+  --ribbon-background-collapsed: var(--ag-frame-background);
+  --tab-container-background: var(--ag-frame-background);
+  --tab-outline-color: var(--ag-panel-border);
+  --link-color: color-mix(in srgb, var(--color-accent) 30%, var(--text-normal));
+  --link-color-hover: var(--text-normal);
+  --link-external-color: var(--link-color);
+  --link-external-color-hover: var(--link-color-hover);
+  --link-unresolved-color: var(--text-muted);
+  --link-unresolved-opacity: 1;
+  --scrollbar-thumb-bg: var(--ag-control-border);
+}
+
+/* Workspace chassis */
+.workspace,
+.workspace-ribbon.mod-primary::before,
+.workspace-split.mod-sidedock {
+  background-color: var(--ag-frame-background);
+}
+
+.workspace-ribbon.mod-primary {
+  border-inline-end-color: var(--ag-panel-border);
+}
+
+.workspace-ribbon .side-dock-ribbon-action {
+  inline-size: 30px;
+  block-size: 30px;
+  padding: var(--size-2-2);
+}
+
+.workspace-split.mod-root .view-header,
+.workspace-split.mod-sidedock .workspace-leaf-content {
+  background-color: var(--ag-panel-background);
+}
+
+.nav-header .nav-buttons-container,
+.nav-files-container {
+  margin-inline: var(--size-4-2);
+  border: 1px solid var(--ag-panel-border);
+  border-radius: var(--ag-control-radius);
+}
+
+.nav-header .nav-buttons-container {
+  gap: var(--size-2-2);
+  padding: var(--size-2-2);
+  background-color: var(--ag-frame-background);
+}
+
+.nav-files-container {
+  margin-block-end: var(--size-4-2);
+  padding-block-start: var(--size-4-2);
+  background-color: var(--ag-panel-background);
+}
+
+/* Dialog surfaces */
+.modal {
+  backdrop-filter: blur(var(--ag-glass-blur)) saturate(140%);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--ag-card-radius);
+  box-shadow: var(--shadow-s), inset 0 1px 0 rgb(255 255 255 / 8%);
+  transition:
+    background-color var(--anim-duration-moderate) var(--anim-motion-smooth),
+    border-color var(--anim-duration-moderate) var(--anim-motion-smooth),
+    box-shadow var(--anim-duration-moderate) var(--anim-motion-smooth);
+}
+
+/* Each tab has a single outline. Suppress the native connector curves and divider. */
+.workspace-tab-header-container {
+  --tab-curve: 0px;
+  --tab-divider-color: transparent;
+}
+
+.workspace-tab-header-container .workspace-tab-header::before,
+.workspace-tab-header-container .workspace-tab-header::after {
+  content: none;
+}
+
+.workspace-tabs .workspace-tab-header-container .workspace-tab-header {
+  --tab-inner-border-width: 0px;
+
+  margin-inline: var(--size-2-1);
+  margin-block-end: var(--size-2-1);
+  border: 1px solid var(--ag-control-border);
+  border-radius: var(--ag-control-radius);
+  background-color: var(--ag-control-background);
+  box-shadow: var(--ag-control-shadow);
+
+  &:not(.is-active):hover {
+    background-color: var(--ag-control-hover);
+    box-shadow: var(--ag-control-shadow);
+  }
+
+  &.is-active {
+    border-color: var(--color-accent);
+    background-color: var(--ag-control-active);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-accent) calc(var(--ag-glow-strength) * 100%), transparent), var(--ag-control-pressed);
+  }
+}
+
+/* Native controls retain their built-in behavior and semantic colors. */
+button,
+select,
+.dropdown,
+.combobox-button,
+input[type="color"],
+.draw-in-canvas-color-disc-palette-swatch {
+  border: 1px solid var(--ag-control-border);
+}
+
+select.dropdown:not(.is-measuring) {
+  background-color: var(--ag-control-background);
+
+  &:hover {
+    background-color: var(--ag-control-hover);
+  }
+}
+
+button:not(:disabled):active,
+.checkbox-container::after,
+input[type="range"]::-webkit-slider-thumb {
+  box-shadow: var(--ag-control-pressed);
+}
+
+.checkbox-container {
+  outline: 1px solid var(--ag-control-border);
+}
+
+input[type="range"]::-webkit-slider-thumb,
+::-webkit-scrollbar-thumb {
+  border: 1px solid var(--ag-control-border);
+}
+
+:is(
+  .clickable-icon,
+  .text-icon-button,
+  .canvas-control-item,
+  .setting-group-filter,
+  .metadata-add-button,
+  .workspace-drawer-vault-switcher,
+  .mobile-toolbar-option,
+  .mobile-navbar-action,
+  .style-manager-icon-button,
+  .style-manager-theme-trigger,
+  .style-manager-isolate-badge,
+  :where(.workspace-drawer-tab-select) .workspace-tab-header-inner,
+  :where(.mobile-tab) :is(.mobile-tab-pin, .close-button)
+) {
+  border: 1px solid var(--ag-control-border);
+  border-radius: var(--ag-control-radius);
+  background-color: var(--ag-control-background);
+  box-shadow: var(--ag-control-shadow);
+
+  &:hover {
+    background-color: var(--ag-control-hover);
+    box-shadow: var(--ag-control-shadow);
+  }
+
+  &:is(.is-active, [aria-pressed="true"], :active) {
+    border-color: var(--color-accent);
+    background-color: var(--ag-control-active);
+    box-shadow: var(--ag-control-pressed);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 1px;
+    box-shadow: var(--ag-control-shadow);
+  }
+}
+
+/* Explorer folders use full-width accents. File labels keep a compact control. */
+.nav-folder-title:where([data-path]:not([data-path="/"])) {
+  --ag-folder-color: color-mix(in srgb, var(--ag-nav-tint, var(--text-muted)) var(--ag-folder-tint-strength), var(--text-muted));
+  --nav-item-background-hover: color-mix(in srgb, var(--ag-folder-color) 20%, var(--ag-panel-background));
+
+  margin-block-end: var(--size-4-1);
+  border: 1px solid color-mix(in srgb, var(--ag-folder-color) 53%, var(--ag-panel-background));
+  border-radius: var(--ag-control-radius);
+  background-color: color-mix(in srgb, var(--ag-folder-color) 11%, var(--ag-panel-background));
+  box-shadow: var(--ag-control-shadow);
+}
+
+.nav-file-title {
+  --nav-item-background-hover: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  --nav-item-background-active: color-mix(in srgb, var(--color-accent) 11%, transparent);
+
+  gap: var(--size-4-1);
+}
+
+.nav-file-title-content {
+  flex: 0 1 auto;
+  min-inline-size: 0;
+  padding: var(--size-2-1) var(--size-2-3);
+  border: 1px solid var(--ag-control-border);
+  border-radius: var(--ag-control-radius);
+  background-color: var(--ag-control-background);
+  box-shadow: var(--ag-control-shadow);
+}
+
+.nav-file-title:is(:hover, .is-active) .nav-file-title-content {
+  border-color: var(--color-accent);
+  background-color: var(--ag-control-active);
+}
+
+.nav-folder-title[data-path="bases"] {
+  --ag-nav-tint: #fb7185;
+}
+
+.nav-folder-title[data-path="projects"] {
+  --ag-nav-tint: #fbbf24;
+}
+
+.nav-folder-title[data-path="raw"] {
+  --ag-nav-tint: #a3e635;
+}
+
+.nav-folder-title[data-path="synthesis"] {
+  --ag-nav-tint: #34d399;
+}
+
+/* Navigable rows and their native selection states */
+:is(
+  :where(.prompt-results) > .suggestion-item,
+  :where(.mod-settings) .vertical-tab-nav-item,
+  .menu-item:where(:not(.is-label)),
+  .community-item,
+  .search-result-file-title
+) {
+  margin-block-end: var(--size-2-2);
+  border: 1px solid var(--ag-control-border);
+  border-radius: var(--ag-control-radius);
+  background-color: var(--ag-control-background);
+  box-shadow: var(--ag-control-shadow);
+
+  &:hover {
+    background-color: var(--ag-control-hover);
+  }
+}
+
+:is(.prompt-results .suggestion-item, .community-item, .menu-item):is(.is-selected, .selected),
+body .mod-settings .vertical-tab-nav-item.is-active {
+  border-color: var(--color-accent);
+  background-color: var(--ag-control-active);
+  box-shadow: var(--ag-control-pressed);
+}
+
+/* Text links remain inline and use the same perimeter as the other controls. */
+a:where([href], .internal-link, .external-link),
+.metadata-link-inner,
+:where(.is-live-preview) :is(.cm-hmd-internal-link, .cm-link, .cm-url):where(:not(.cm-formatting)) .cm-underline {
+  --link-decoration: none;
+  --link-decoration-hover: none;
+  --link-external-decoration: none;
+  --link-external-decoration-hover: none;
+
+  padding: 0.06em 0.35em;
+  border: 1px solid var(--ag-control-border);
+  border-radius: var(--ag-control-radius);
+  background-color: var(--ag-control-background);
+  box-shadow: inset 0 1px 0 var(--ag-control-light);
+  box-decoration-break: clone;
+
+  &:hover {
+    border-color: var(--color-accent);
+    background-color: var(--ag-control-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 1px;
+  }
+}
+
+a.external-link {
+  padding-inline-end: 1.1em;
+}
+
+a.is-unresolved,
+:where(.is-live-preview) .is-unresolved > .cm-underline {
+  border-style: dashed;
+}
+
+a.tag,
+:where(.is-live-preview) .cm-hashtag {
+  --tag-color: var(--link-color);
+  --tag-color-hover: var(--link-color-hover);
+  --tag-background: var(--ag-control-background);
+  --tag-background-hover: var(--ag-control-hover);
+  --tag-border-color: var(--ag-control-border);
+  --tag-border-color-hover: var(--color-accent);
+  --tag-border-width: 1px;
+  --tag-radius: var(--ag-control-radius);
+}
+
+/* Obsidian Bases table and numeric alignment */
+.bases-table-container,
+.markdown-rendered table {
+  border-radius: var(--radius-m);
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+:where(.bases-tbody) .bases-tr:hover {
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+
+/* Graph view controls and edges */
+.graph-controls {
+  backdrop-filter: blur(calc(var(--ag-glass-blur) * 1.1));
+  background: var(--background-secondary);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent);
+  border-radius: var(--ag-card-radius);
+  box-shadow: var(--shadow-l);
+}
+
+.graph-view.color-fill { color: var(--color-accent); }
+.graph-view.color-line { color: color-mix(in srgb, var(--color-accent) 28%, transparent); }
+.graph-view.color-line-highlight { color: var(--color-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    --anim-duration-fast: 0ms;
+    --anim-duration-moderate: 0ms;
+  }
+}
