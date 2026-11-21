@@ -40,22 +40,22 @@ settings:
     description: Usada quando a cor de destaque do Obsidian está no padrão.
     type: variable-themed-color
     format: hsl-split
-    default-dark: '#22D3EE'
+    default-dark: '#4CF3FA'
     default-light: '#0891B2'
   - id: ag-folder-tint-strength
     title: Cores das pastas
-    description: Destaca as pastas bases, projects, raw e synthesis.
+    description: Alterna entre a paleta Blue Jeans e as cores de bases, projects, raw e synthesis.
     type: variable-select
-    default: '100%'
+    default: '0%'
     options:
       - label: Coloridas
         value: '100%'
-      - label: Neutras
+      - label: Blue Jeans
         value: '0%'
 */
 
 /* ==========================================================================
-   Blue Jeans 1.0.6 — Rander Carrijo
+   Blue Jeans 1.0.8 — Rander Carrijo
    Preset padrão: Cyan Lumina (Dark)
    Obsidian 1.15.1+
    ========================================================================== */
@@ -66,7 +66,7 @@ body {
   --font-monospace-theme: "JetBrains Mono", ui-monospace, monospace;
   --ag-glass-blur: 20px;
   --ag-glass-opacity: 0.64;
-  --ag-folder-tint-strength: 100%;
+  --ag-folder-tint-strength: 0%;
   --ag-card-radius: 16px;
   --ag-control-radius: 6px;
   --button-radius: var(--ag-control-radius);
@@ -82,21 +82,24 @@ body {
 }
 
 .theme-dark {
-  --accent-h: var(--ag-accent-color-h, 187.94);
-  --accent-s: var(--ag-accent-color-s, 85.71%);
-  --accent-l: var(--ag-accent-color-l, 53.33%);
-  --ag-frame-background: #0b1422;
-  --ag-panel-background: #111d2f;
-  --background-primary: rgb(16 24 43 / var(--ag-glass-opacity));
-  --background-primary-alt: rgb(11 17 31 / 72%);
-  --background-secondary: rgb(13 20 36 / 68%);
-  --background-secondary-alt: rgb(8 12 22 / 84%);
-  --background-modifier-border: rgb(255 255 255 / 10%);
+  --accent-h: var(--ag-accent-color-h, 182.41);
+  --accent-s: var(--ag-accent-color-s, 94.57%);
+  --accent-l: var(--ag-accent-color-l, 63.92%);
+  --ag-frame-background: #001735;
+  --ag-panel-background: #01274d;
+  --ag-denim-edge: #92bbe3;
+  --ag-denim-thread: #bfd8ee;
+  --ag-folder-cream-edge: #fbefcd;
+  --background-primary: rgb(1 43 85 / var(--ag-glass-opacity));
+  --background-primary-alt: rgb(1 39 77 / 72%);
+  --background-secondary: rgb(1 35 77 / 68%);
+  --background-secondary-alt: rgb(0 23 53 / 84%);
+  --background-modifier-border: color-mix(in srgb, var(--ag-denim-edge) 30%, transparent);
   --background-modifier-border-hover: color-mix(in srgb, var(--color-accent) 42%, transparent);
   --background-modifier-hover: rgb(255 255 255 / 6%);
-  --text-normal: #eef4ff;
-  --text-muted: #a5b4cc;
-  --text-faint: #70829e;
+  --text-normal: #fcefd6;
+  --text-muted: #b2c9e6;
+  --text-faint: #96b1d0;
   --shadow-s: 0 12px 32px -14px rgb(2 6 18 / 65%);
   --shadow-l: 0 24px 60px -18px rgb(2 6 18 / 82%);
 }
@@ -105,27 +108,33 @@ body {
   --accent-h: var(--ag-accent-color-h, 191.65);
   --accent-s: var(--ag-accent-color-s, 91.40%);
   --accent-l: var(--ag-accent-color-l, 36.47%);
-  --ag-frame-background: #dce8f3;
-  --ag-panel-background: #f4f8ff;
-  --background-primary: rgb(255 255 255 / var(--ag-glass-opacity));
-  --background-primary-alt: rgb(244 248 255 / 78%);
-  --background-secondary: rgb(248 251 255 / 72%);
-  --background-secondary-alt: rgb(232 239 248 / 86%);
-  --background-modifier-border: rgb(15 23 42 / 10%);
+  --ag-frame-background: #d8e7f5;
+  --ag-panel-background: #ecf5ff;
+  --ag-denim-edge: #436b93;
+  --ag-denim-thread: #385d85;
+  --ag-folder-cream-edge: #805b32;
+  --background-primary: rgb(249 252 255 / var(--ag-glass-opacity));
+  --background-primary-alt: rgb(235 245 255 / 78%);
+  --background-secondary: rgb(242 248 255 / 72%);
+  --background-secondary-alt: rgb(220 235 249 / 86%);
+  --background-modifier-border: color-mix(in srgb, var(--ag-denim-edge) 32%, transparent);
   --background-modifier-border-hover: color-mix(in srgb, var(--color-accent) 38%, transparent);
   --background-modifier-hover: rgb(15 23 42 / 5%);
-  --text-normal: #0f172a;
-  --text-muted: #475569;
-  --text-faint: #64748b;
+  --text-normal: #102a45;
+  --text-muted: #385774;
+  --text-faint: #4a6681;
   --shadow-s: 0 10px 28px -12px rgb(15 23 42 / 12%);
   --shadow-l: 0 22px 54px -18px rgb(15 23 42 / 20%);
 }
 
 /* Shared chrome and control colors */
 :is(.theme-dark, .theme-light) {
-  --ag-panel-border: color-mix(in srgb, var(--text-muted) 27%, var(--ag-frame-background));
-  --ag-control-border: color-mix(in srgb, var(--text-muted) 74%, var(--ag-panel-background));
-  --ag-control-background: color-mix(in srgb, var(--text-muted) 12%, var(--ag-panel-background));
+  --ag-panel-border: color-mix(in srgb, var(--ag-denim-edge) 57%, var(--ag-frame-background));
+  --ag-panel-inset: inset 0 0 0 1px var(--ag-frame-background), inset 0 0 0 2px var(--ag-panel-border);
+  --ag-denim-weave: repeating-linear-gradient(135deg, color-mix(in srgb, var(--ag-denim-edge) 9%, transparent) 0 1px, transparent 1px 4px);
+  --ag-control-border: color-mix(in srgb, var(--ag-denim-edge) 82%, var(--ag-panel-background));
+  --ag-control-background: color-mix(in srgb, var(--ag-denim-edge) 12%, var(--ag-panel-background));
+  --ag-control-thread: color-mix(in srgb, var(--ag-denim-thread) 58%, transparent);
   --ag-control-hover: color-mix(in srgb, var(--color-accent) 14%, var(--ag-control-background));
   --ag-control-active: color-mix(in srgb, var(--color-accent) 25%, var(--ag-panel-background));
   --ag-control-light: rgb(248 252 255 / 15%);
@@ -139,9 +148,11 @@ body {
   --background-modifier-border-focus: var(--link-color);
   --ribbon-background: var(--ag-frame-background);
   --ribbon-background-collapsed: var(--ag-frame-background);
+  --titlebar-background: var(--ag-frame-background);
+  --titlebar-background-focused: var(--ag-frame-background);
   --tab-container-background: var(--ag-frame-background);
   --tab-outline-color: var(--ag-panel-border);
-  --link-color: color-mix(in srgb, var(--color-accent) 30%, var(--text-normal));
+  --link-color: color-mix(in srgb, var(--color-accent) 25%, var(--text-normal));
   --link-color-hover: var(--text-normal);
   --link-external-color: var(--link-color);
   --link-external-color-hover: var(--link-color-hover);
@@ -161,6 +172,11 @@ body {
   border-inline-end-color: var(--ag-panel-border);
 }
 
+.workspace-ribbon.mod-primary,
+.nav-header .nav-buttons-container {
+  background-image: var(--ag-denim-weave);
+}
+
 .workspace-ribbon .side-dock-ribbon-action {
   inline-size: 30px;
   block-size: 30px;
@@ -177,6 +193,7 @@ body {
   margin-inline: var(--size-4-2);
   border: 1px solid var(--ag-panel-border);
   border-radius: var(--ag-control-radius);
+  box-shadow: var(--ag-panel-inset);
 }
 
 .nav-header .nav-buttons-container {
@@ -194,9 +211,9 @@ body {
 /* Dialog surfaces */
 .modal {
   backdrop-filter: blur(var(--ag-glass-blur)) saturate(140%);
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--ag-panel-border);
   border-radius: var(--ag-card-radius);
-  box-shadow: var(--shadow-s), inset 0 1px 0 rgb(255 255 255 / 8%);
+  box-shadow: var(--ag-panel-inset), var(--shadow-s);
   transition:
     background-color var(--anim-duration-moderate) var(--anim-motion-smooth),
     border-color var(--anim-duration-moderate) var(--anim-motion-smooth),
@@ -307,16 +324,40 @@ input[type="range"]::-webkit-slider-thumb,
   }
 }
 
-/* Explorer folders use full-width accents. File labels keep a compact control. */
+/* Cream folders, indigo subfolders, and a cyan active folder. */
 .nav-folder-title:where([data-path]:not([data-path="/"])) {
-  --ag-folder-color: color-mix(in srgb, var(--ag-nav-tint, var(--text-muted)) var(--ag-folder-tint-strength), var(--text-muted));
-  --nav-item-background-hover: color-mix(in srgb, var(--ag-folder-color) 20%, var(--ag-panel-background));
+  --ag-folder-color: color-mix(in srgb, var(--ag-nav-tint, #fcddb5) var(--ag-folder-tint-strength), #fcddb5);
+  --ag-folder-edge: var(--ag-folder-cream-edge);
+  --ag-control-thread: #8b6b43;
+  --nav-item-color: #0a182a;
+  --nav-item-color-hover: var(--nav-item-color);
+  --nav-item-background-hover: var(--ag-folder-color);
+  --nav-collapse-icon-color: var(--nav-item-color);
 
   margin-block-end: var(--size-4-1);
-  border: 1px solid color-mix(in srgb, var(--ag-folder-color) 53%, var(--ag-panel-background));
+  border: 1px solid var(--ag-folder-edge);
   border-radius: var(--ag-control-radius);
-  background-color: color-mix(in srgb, var(--ag-folder-color) 11%, var(--ag-panel-background));
+  background-color: var(--ag-folder-color);
   box-shadow: var(--ag-control-shadow);
+}
+
+.nav-folder-title:where([data-path*="/"]:not([data-path="/"])) {
+  --ag-folder-color: #1d4162;
+  --ag-folder-edge: #7197ae;
+  --ag-control-thread: #a0b9cc;
+  --nav-item-color: #fcefd6;
+}
+
+.nav-folder-title:where([data-path]:not([data-path="/"])):where(:hover, :focus-visible, :active, .mobile-tap, .is-active, .is-selected) {
+  --ag-folder-color: #135777;
+  --ag-folder-edge: var(--color-accent);
+  --ag-control-thread: var(--color-accent);
+  --nav-item-color: #fcefd6;
+  --nav-item-color-active: var(--nav-item-color);
+  --nav-item-color-selected: var(--nav-item-color);
+  --nav-item-background-active: var(--ag-folder-color);
+  --nav-item-background-selected: var(--ag-folder-color);
+  --nav-collapse-icon-color: var(--color-accent);
 }
 
 .nav-file-title {
@@ -383,6 +424,29 @@ body .mod-settings .vertical-tab-nav-item.is-active {
   box-shadow: var(--ag-control-pressed);
 }
 
+/* Stitch inside the control border and leave the native focus outline free. */
+:where(
+  button:not(:disabled),
+  select.dropdown:not(.is-measuring),
+  .combobox-button,
+  .workspace-tab-header,
+  .clickable-icon:not(.workspace-tab-header-inner-close-button),
+  .text-icon-button,
+  .metadata-add-button,
+  .canvas-control-item,
+  .mobile-toolbar-option,
+  .mobile-navbar-action,
+  .nav-folder-title[data-path]:not([data-path="/"]),
+  .nav-file-title-content,
+  .prompt-results > .suggestion-item,
+  .mod-settings .vertical-tab-nav-item,
+  .menu-item:not(.is-label),
+  .search-result-file-title
+):not(:focus-visible) {
+  outline: 1px dashed var(--ag-control-thread);
+  outline-offset: -3px;
+}
+
 /* Text links remain inline and use the same perimeter as the other controls. */
 a:where([href], .internal-link, .external-link),
 .metadata-link-inner,
@@ -398,6 +462,11 @@ a:where([href], .internal-link, .external-link),
   background-color: var(--ag-control-background);
   box-shadow: inset 0 1px 0 var(--ag-control-light);
   box-decoration-break: clone;
+
+  &:where(:not(:focus-visible, .is-unresolved)) {
+    outline: 1px dashed var(--ag-control-thread);
+    outline-offset: -2px;
+  }
 
   &:hover {
     border-color: var(--color-accent);
@@ -417,6 +486,10 @@ a.external-link {
 a.is-unresolved,
 :where(.is-live-preview) .is-unresolved > .cm-underline {
   border-style: dashed;
+}
+
+:where(.is-live-preview) .is-unresolved > .cm-underline:not(:focus-visible) {
+  outline-style: none;
 }
 
 a.tag,
@@ -448,9 +521,9 @@ a.tag,
 .graph-controls {
   backdrop-filter: blur(calc(var(--ag-glass-blur) * 1.1));
   background: var(--background-secondary);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent);
+  border: 1px solid var(--ag-panel-border);
   border-radius: var(--ag-card-radius);
-  box-shadow: var(--shadow-l);
+  box-shadow: var(--ag-panel-inset), var(--shadow-l);
 }
 
 .graph-view.color-fill { color: var(--color-accent); }
