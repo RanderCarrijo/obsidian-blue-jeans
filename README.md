@@ -2,6 +2,8 @@
 
 A blue-toned theme for Obsidian by Rander Carrijo. It supports light and dark modes, follows your Obsidian accent color, and gives links, tabs, and sidebar controls visible borders.
 
+![Blue Jeans cover artwork with a stitched denim interface and a motorcyclist using a laptop](screenshots/blue-jeans-cover.png)
+
 ![Blue Jeans in Obsidian, showing the Observatory sample vault](screenshots/screenshot.png)
 
 ## Install
