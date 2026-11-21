@@ -4,7 +4,7 @@ A blue-toned theme for Obsidian by Rander Carrijo. It supports light and dark mo
 
 ![Blue Jeans cover artwork with a stitched denim interface and a motorcyclist using a laptop](screenshots/blue-jeans-cover.png)
 
-![Blue Jeans in Obsidian, showing the Observatory sample vault](screenshots/screenshot.png)
+![Blue Jeans in Obsidian, showing the Observatory sample vault](screenshots/obsidian.png)
 
 ## Install
 
